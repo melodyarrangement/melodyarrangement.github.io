@@ -13,7 +13,7 @@ html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
+small, strike, strong, tt, var,
 b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
@@ -53,6 +53,7 @@ body {
   color:#373737;
   background: #fff;
   font-size: 16px;
+  font-weight: 300;
   font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -85,7 +86,7 @@ footer p {
 
 h1, h2, h3, h4, h5, h6 {
   margin: 10px 0;
-  font-weight: 400;
+  font-weight: 300;
   color:#222222;
   font-family: Helvetica, 'Calibri', Helvetica, Arial, sans-serif;
   letter-spacing: -1px;
@@ -93,13 +94,13 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 36px;
-  font-weight: 600;
+  font-weight: 350;
 }
 
 h2 {
   padding-bottom: 10px;
   font-size: 32px;
-  background: url('../images/bg_hr.png') repeat-x bottom;
+  font-weight: 350;
 }
 
 h3 {
@@ -124,7 +125,7 @@ p {
 
 a {
   text-decoration: none;
-  color: #007edf;
+  color: #35B235;
   text-shadow: none;
 
   transition: color 0.5s ease;
@@ -142,7 +143,7 @@ a {
 a:hover, a:focus {text-decoration: underline;}
 
 footer a {
-  color: #F2F2F2;
+  color: #90EE90;
   text-decoration: underline;
 }
 
