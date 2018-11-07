@@ -23,7 +23,12 @@
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
-          <h1 id="project_title">Melody arrangement for style conversion</h1>
+<font size="6">
+          Supplemental webpage for<br>
+          　　Unsupervised Melody Style Conversion<br>
+          　　<font size="5">by Eita Nakamura, Kentaro Shibata, Ryo Nishikimi, Kazuyoshi Yoshii</font><br>
+          　　<font size="5">(Paper submitted to ICASSP 2019)</font>
+</font>
         </header>
     </div>
 
@@ -31,24 +36,399 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
 
-This is the accompanying web page for the following paper:<br>
-
+        <h3>1. Data</h3>
+We use three sets of data belonging to different music categories.
 <ul>
-<li>Anonymous<br>
-<strong>Melody Arrangement</strong><br>
-Manuscript submitted to <em>???</em>
+<li><strong>(Western) classical music category</strong><br>
+    Dataset consists of soprano melodies compoased by Amadeus Mozart (7133 bars)
+<li><strong>J-pop category</strong><br>
+    Dataset consists of vocal melodies compoased by a band <em>Mr. Children</em> (3878 bars)
+<li><strong>Enka music category</strong><br>
+    <a href="https://en.wikipedia.org/wiki/Enka">Enka</a> is a genre of Japanese popular music. The dataset consists of vocal melodies by various artists (37032 bars).
 </ul>
 
-        <h2>Data</h2>
-The musical pieces used for evaluating piano reduction methods (you can see musical scores below).<br><br>
+        <h3>2. Unsupervised learning of music styles</h3>
+
+We train a <strong>transposition-symmetric torus Markov mixture model (TSTMMixM)</strong> (see paper) from the dataset of each music category. Each component model is expected to represent music styles in each music category. Some examples of learned styles are visualized below.
+
+        <h4>2.1. Styles in pitch organization</h4>
+
+Pitch-class transition probabilities obtained by integrating out the rhythmic variables. Transition (bigram) probabilities are represented by bands.<br><br>
+
+<div style="position: relative; width:600px; height:350px; top:0px; left0px; margin:0px; padding:0px;">
+
+    <div style="position:absolute; top:0px; left:10px; width: 180px;">
+    <font color="#941651">Classical music style 1</font><br>
+    (Major diatonic scale)
+    <img style="margin: 0px 0px 0px 0px; position:relative; top:0px;" src="image/TrProbVis_Mozart-0.png" height="250px" alt="">
+    </div>
+    
+    <div style="position:absolute; top:0px; left:310px; width: 180px;">
+    <font color="#941651">Classical music style 2</font><br>
+    (Minor diatonic scale)
+    <img style="margin: 0px 0px 0px 0px; position:relative; top:0px;" src="image/TrProbVis_Mozart-2.png" height="250px" alt="">
+    </div>
+
+</div>
+
+<div style="position: relative; width:600px; height:350px; top:0px; left0px; margin:0px; padding:0px;">
+
+    <div style="position:absolute; top:0px; left:10px; width: 180px;">
+    <font color="#941651">J-pop style 1</font><br>
+    (Major diatonic scale)
+    <img style="margin: 0px 0px 0px 0px; position:relative; top:0px;" src="image/TrProbVis_Mozart-0.png" height="250px" alt="">
+    </div>
+    
+    <div style="position:absolute; top:0px; left:310px; width: 180px;">
+    <font color="#941651">J-pop style 2</font><br>
+    (Minor diatonic scale)
+    <img style="margin: 0px 0px 0px 0px; position:relative; top:0px;" src="image/TrProbVis_Mozart-2.png" height="250px" alt="">
+    </div>
+
+</div>
+
+<div style="position: relative; width:600px; height:350px; top:0px; left0px; margin:0px; padding:0px;">
+
+    <div style="position:absolute; top:0px; left:10px; width: 180px;">
+    <font color="#941651">Enka music style 1</font><br>
+    (Major pentatonic scale)
+    <img style="margin: 0px 0px 0px 0px; position:relative; top:0px;" src="image/TrProbVis_Enka-6.png" height="250px" alt="">
+    </div>
+    
+    <div style="position:absolute; top:0px; left:310px; width: 180px;">
+    <font color="#941651">Enka music style 2</font><br>
+    (Minor pentatonic scale)
+    <img style="margin: 0px 0px 0px 0px; position:relative; top:0px;" src="image/TrProbVis_Enka-0.png" height="250px" alt="">
+    </div>
+
+</div>
+
+It is worth emphasizing that these musical scales were inferred unsupervisedly without any annotation on the tonic and mode!
+
+        <h4>2.2. Styles in rhythmic organization</h4>
+
+Metrical transition probabilities obtained by integrating out the pitch-class variables. Transition (bigram) probabilities are represented by bands. Like in a clock, a metrical (beat) position in a bar (4/4 time) is represented on a circle. 0 o'clock, 3 o'clock, 6 o'clock, and 9 o'clock indicate quarter-note beats. <br>
+<br>
+
+<div style="position: relative; width:600px; height:350px; top:0px; left0px; margin:0px; padding:0px;">
+
+    <div style="position:absolute; top:0px; left:10px; width: 180px;">
+    <font color="#941651">Classical music style 1</font><br>
+    <img style="margin: 0px 0px 0px 0px; position:relative; top:0px;" src="image/TrProbRhythmVis_Mozart-0.png" height="250px" alt="">
+    </div>
+    
+    <div style="position:absolute; top:0px; left:310px; width: 180px;">
+    <font color="#941651">Classical music style 2</font><br>
+    <img style="margin: 0px 0px 0px 0px; position:relative; top:0px;" src="image/TrProbRhythmVis_Mozart-2.png" height="250px" alt="">
+    </div>
+
+</div>
+
+<div style="position: relative; width:600px; height:350px; top:0px; left0px; margin:0px; padding:0px;">
+
+    <div style="position:absolute; top:0px; left:10px; width: 180px;">
+    <font color="#941651">J-pop style 1</font><br>
+    <img style="margin: 0px 0px 0px 0px; position:relative; top:0px;" src="image/TrProbRhythmVis_MrChildren-4.png" height="250px" alt="">
+    </div>
+    
+    <div style="position:absolute; top:0px; left:310px; width: 180px;">
+    <font color="#941651">J-pop style 2</font><br>
+    <img style="margin: 0px 0px 0px 0px; position:relative; top:0px;" src="image/TrProbRhythmVis_MrChildren-4.png" height="250px" alt="">
+    </div>
+
+</div>
+
+<div style="position: relative; width:600px; height:350px; top:0px; left0px; margin:0px; padding:0px;">
+
+    <div style="position:absolute; top:0px; left:10px; width: 180px;">
+    <font color="#941651">Enka music style 1</font><br>
+    <img style="margin: 0px 0px 0px 0px; position:relative; top:0px;" src="image/TrProbRhythmVis_Enka-0.png" height="250px" alt="">
+    </div>
+    
+    <div style="position:absolute; top:0px; left:310px; width: 180px;">
+    <font color="#941651">Enka music style 2</font><br>
+    <img style="margin: 0px 0px 0px 0px; position:relative; top:0px;" src="image/TrProbRhythmVis_Enka-0.png" height="250px" alt="">
+    </div>
+
+</div>
+
+
+        <h3>3. Sound examples</h3>
+Each original melody (8-bar long) is converted to the target style. For comparison, we tested the following three methods (see paper for details):
+<ul>
+<li><strong>TMM+SEM</strong>: Torus Markov model + simple edit model<br>
+<li><strong>TSTMMixM+SEM</strong>: TSTMMixM + simple edit mode<br>
+<li><strong>TSTMMixM+REM</strong>: TSTMMixM + refined edit mode<br>
+</ul>
+<br>
+
+        <h4>3.1. Classical to J-pop / Enka</h4>
+
+<div style="position: relative; width:600px; height:100px; top:0px; left0px; margin:0px; padding:0px;">
+  <div style="position:absolute; top:0px; left:0px; width: 300px;">
+  Original melody (Classical music style)<br>
+  <audio controls><source src="./audio/M1-0.mp3" type="audio/mp3"></audio><br>
+  </div>
+</div>
+
+<div style="position: relative; width:900px; height:100px; top:0px; left0px; margin:0px; padding:0px;">
+  <div style="position:absolute; top:0px; left:0px; width: 300px;">
+  Target: J-pop (TMM+SEM)<br>
+  <audio controls><source src="./audio/M1-Jpop-TMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+  <div style="position:absolute; top:0px; left:300px; width: 300px;">
+  Target: J-pop (TSTMMixM+SEM)<br>
+  <audio controls><source src="./audio/M1-Jpop-TSTMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+  <div style="position:absolute; top:0px; left:600px; width: 300px;">
+  Target: J-pop (TSTMMixM+REM)<br>
+  <audio controls><source src="./audio/M1-Jpop-PTSTMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+</div>
+
+<div style="position: relative; width:900px; height:100px; top:0px; left0px; margin:0px; padding:0px;">
+  <div style="position:absolute; top:0px; left:0px; width: 300px;">
+  Target: Enka (TMM+SEM)<br>
+  <audio controls><source src="./audio/M1-Enka-TMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+  <div style="position:absolute; top:0px; left:300px; width: 300px;">
+  Target: Enka (TSTMMixM+SEM)<br>
+  <audio controls><source src="./audio/M1-Enka-TSTMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+  <div style="position:absolute; top:0px; left:600px; width: 300px;">
+  Target: Enka (TSTMMixM+REM)<br>
+  <audio controls><source src="./audio/M1-Enka-PTSTMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+</div>
+
+        <h4>3.2. Classical to J-pop / Enka</h4>
+
+<div style="position: relative; width:600px; height:100px; top:0px; left0px; margin:0px; padding:0px;">
+  <div style="position:absolute; top:0px; left:0px; width: 300px;">
+  Original melody (Classical music style)<br>
+  <audio controls><source src="./audio/M2-0.mp3" type="audio/mp3"></audio><br>
+  </div>
+</div>
+
+<div style="position: relative; width:900px; height:100px; top:0px; left0px; margin:0px; padding:0px;">
+  <div style="position:absolute; top:0px; left:0px; width: 300px;">
+  Target: J-pop (TMM+SEM)<br>
+  <audio controls><source src="./audio/M2-Jpop-TMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+  <div style="position:absolute; top:0px; left:300px; width: 300px;">
+  Target: J-pop (TSTMMixM+SEM)<br>
+  <audio controls><source src="./audio/M2-Jpop-TSTMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+  <div style="position:absolute; top:0px; left:600px; width: 300px;">
+  Target: J-pop (TSTMMixM+REM)<br>
+  <audio controls><source src="./audio/M2-Jpop-PTSTMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+</div>
+
+<div style="position: relative; width:900px; height:100px; top:0px; left0px; margin:0px; padding:0px;">
+  <div style="position:absolute; top:0px; left:0px; width: 300px;">
+  Target: Enka (TMM+SEM)<br>
+  <audio controls><source src="./audio/M2-Enka-TMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+  <div style="position:absolute; top:0px; left:300px; width: 300px;">
+  Target: Enka (TSTMMixM+SEM)<br>
+  <audio controls><source src="./audio/M2-Enka-TSTMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+  <div style="position:absolute; top:0px; left:600px; width: 300px;">
+  Target: Enka (TSTMMixM+REM)<br>
+  <audio controls><source src="./audio/M2-Enka-PTSTMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+</div>
+
+        <h4>3.3. J-pop to Classical / Enka</h4>
+
+<div style="position: relative; width:600px; height:100px; top:0px; left0px; margin:0px; padding:0px;">
+  <div style="position:absolute; top:0px; left:0px; width: 300px;">
+  Original melody (J-pop style)<br>
+  <audio controls><source src="./audio/M3-0.mp3" type="audio/mp3"></audio><br>
+  </div>
+</div>
+
+<div style="position: relative; width:900px; height:100px; top:0px; left0px; margin:0px; padding:0px;">
+  <div style="position:absolute; top:0px; left:0px; width: 300px;">
+  Target: Classical (TMM+SEM)<br>
+  <audio controls><source src="./audio/M3-Classical-TMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+  <div style="position:absolute; top:0px; left:300px; width: 300px;">
+  Target: Classical (TSTMMixM+SEM)<br>
+  <audio controls><source src="./audio/M3-Classical-TSTMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+  <div style="position:absolute; top:0px; left:600px; width: 300px;">
+  Target: Classical (TSTMMixM+REM)<br>
+  <audio controls><source src="./audio/M3-Classical-PTSTMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+</div>
+
+<div style="position: relative; width:900px; height:100px; top:0px; left0px; margin:0px; padding:0px;">
+  <div style="position:absolute; top:0px; left:0px; width: 300px;">
+  Target: Enka (TMM+SEM)<br>
+  <audio controls><source src="./audio/M3-Enka-TMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+  <div style="position:absolute; top:0px; left:300px; width: 300px;">
+  Target: Enka (TSTMMixM+SEM)<br>
+  <audio controls><source src="./audio/M3-Enka-TSTMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+  <div style="position:absolute; top:0px; left:600px; width: 300px;">
+  Target: Enka (TSTMMixM+REM)<br>
+  <audio controls><source src="./audio/M3-Enka-PTSTMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+</div>
+
+        <h4>3.4. J-pop to Classical / Enka</h4>
+
+<div style="position: relative; width:600px; height:100px; top:0px; left0px; margin:0px; padding:0px;">
+  <div style="position:absolute; top:0px; left:0px; width: 300px;">
+  Original melody (J-pop style)<br>
+  <audio controls><source src="./audio/M4-0.mp3" type="audio/mp3"></audio><br>
+  </div>
+</div>
+
+<div style="position: relative; width:900px; height:100px; top:0px; left0px; margin:0px; padding:0px;">
+  <div style="position:absolute; top:0px; left:0px; width: 300px;">
+  Target: Classical (TMM+SEM)<br>
+  <audio controls><source src="./audio/M4-Classical-TMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+  <div style="position:absolute; top:0px; left:300px; width: 300px;">
+  Target: Classical (TSTMMixM+SEM)<br>
+  <audio controls><source src="./audio/M4-Classical-TSTMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+  <div style="position:absolute; top:0px; left:600px; width: 300px;">
+  Target: Classical (TSTMMixM+REM)<br>
+  <audio controls><source src="./audio/M4-Classical-PTSTMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+</div>
+
+<div style="position: relative; width:900px; height:100px; top:0px; left0px; margin:0px; padding:0px;">
+  <div style="position:absolute; top:0px; left:0px; width: 300px;">
+  Target: Enka (TMM+SEM)<br>
+  <audio controls><source src="./audio/M4-Enka-TMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+  <div style="position:absolute; top:0px; left:300px; width: 300px;">
+  Target: Enka (TSTMMixM+SEM)<br>
+  <audio controls><source src="./audio/M4-Enka-TSTMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+  <div style="position:absolute; top:0px; left:600px; width: 300px;">
+  Target: Enka (TSTMMixM+REM)<br>
+  <audio controls><source src="./audio/M4-Enka-PTSTMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+</div>
+
+        <h4>3.5. Enka to Classical / J-pop</h4>
+
+<div style="position: relative; width:600px; height:100px; top:0px; left0px; margin:0px; padding:0px;">
+  <div style="position:absolute; top:0px; left:0px; width: 300px;">
+  Original melody (Enka music style)<br>
+  <audio controls><source src="./audio/M5-0.mp3" type="audio/mp3"></audio><br>
+  </div>
+</div>
+
+<div style="position: relative; width:900px; height:100px; top:0px; left0px; margin:0px; padding:0px;">
+  <div style="position:absolute; top:0px; left:0px; width: 300px;">
+  Target: Classical (TMM+SEM)<br>
+  <audio controls><source src="./audio/M5-Classical-TMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+  <div style="position:absolute; top:0px; left:300px; width: 300px;">
+  Target: Classical (TSTMMixM+SEM)<br>
+  <audio controls><source src="./audio/M5-Classical-TSTMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+  <div style="position:absolute; top:0px; left:600px; width: 300px;">
+  Target: Classical (TSTMMixM+REM)<br>
+  <audio controls><source src="./audio/M5-Classical-PTSTMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+</div>
+
+<div style="position: relative; width:900px; height:100px; top:0px; left0px; margin:0px; padding:0px;">
+  <div style="position:absolute; top:0px; left:0px; width: 300px;">
+  Target: J-pop (TMM+SEM)<br>
+  <audio controls><source src="./audio/M5-Jpop-TMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+  <div style="position:absolute; top:0px; left:300px; width: 300px;">
+  Target: J-pop (TSTMMixM+SEM)<br>
+  <audio controls><source src="./audio/M5-Jpop-TSTMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+  <div style="position:absolute; top:0px; left:600px; width: 300px;">
+  Target: J-pop (TSTMMixM+REM)<br>
+  <audio controls><source src="./audio/M5-Jpop-PTSTMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+</div>
+
+        <h4>3.6. Enka to Classical / J-pop</h4>
+
+<div style="position: relative; width:600px; height:100px; top:0px; left0px; margin:0px; padding:0px;">
+  <div style="position:absolute; top:0px; left:0px; width: 300px;">
+  Original melody (Enka music style)<br>
+  <audio controls><source src="./audio/M6-0.mp3" type="audio/mp3"></audio><br>
+  </div>
+</div>
+
+<div style="position: relative; width:900px; height:100px; top:0px; left0px; margin:0px; padding:0px;">
+  <div style="position:absolute; top:0px; left:0px; width: 300px;">
+  Target: Classical (TMM+SEM)<br>
+  <audio controls><source src="./audio/M6-Classical-TMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+  <div style="position:absolute; top:0px; left:300px; width: 300px;">
+  Target: Classical (TSTMMixM+SEM)<br>
+  <audio controls><source src="./audio/M6-Classical-TSTMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+  <div style="position:absolute; top:0px; left:600px; width: 300px;">
+  Target: Classical (TSTMMixM+REM)<br>
+  <audio controls><source src="./audio/M6-Classical-PTSTMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+</div>
+
+<div style="position: relative; width:900px; height:100px; top:0px; left0px; margin:0px; padding:0px;">
+  <div style="position:absolute; top:0px; left:0px; width: 300px;">
+  Target: J-pop (TMM+SEM)<br>
+  <audio controls><source src="./audio/M6-Jpop-TMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+  <div style="position:absolute; top:0px; left:300px; width: 300px;">
+  Target: J-pop (TSTMMixM+SEM)<br>
+  <audio controls><source src="./audio/M6-Jpop-TSTMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+  <div style="position:absolute; top:0px; left:600px; width: 300px;">
+  Target: J-pop (TSTMMixM+REM)<br>
+  <audio controls><source src="./audio/M6-Jpop-PTSTMM.mp3" type="audio/mp3"></audio><br>
+  </div>
+</div>
+
+
+        <h3>4. Subjective evaluation</h3>
+
+        <h4>4.2. Setup</h4>
+
+We conducted a subjective evaluation test to measure the quality of melody style conversion. <a href="https://melodyarrangement.github.io/EvaluationPage.html" target="_blank">Here</a> is the page used for the listening evaluation.<br>
+<br>
+10 evaluators who listen to music more than one hour a day participated the experiment; they listened to the above arranged melodies and evaluated each arrangment in terms of the following scores:
+<ul>
+<li><strong>Style match</strong>: Does the arranged melody match the target style? (1: very poorly , ... , 6: very well)<br>
+<li><strong>Similarity</strong>: Do you feel the original melody? (1: very poorly , ... , 6: very well)<br>
+<li><strong>Naturalness</strong>: Is the melody natural? (1: very unnatural , ... , 6: very natural)<br>
+<li><strong>Attractiveness</strong>: Is the melody attractive? (1: not attractive at all , ... , 6: very attractive) <br>
+</ul>
+
+        <h4>4.2. Result</h4>
+
+    <div style="position:relative; top:20px; left:50px; width: 750px; height:350px; ">
+    <img style="margin: 0px 0px 0px 0px; position:relative; top:0px;" src="image/fig_Statistics.png" width="700px" alt="">
+    </div>
+
+The results clearly demonstrate the effectiveness of the TSTMMixM and the refined edit model.
+
+The results show that the mean scores of all the metrics are improved by refinements of the method. Particularly, the <em>style match</em> score improved by 0.5 (p-value < 10<sup>−5</sup>, t-test) with the refined language model (M1 vs M2), and the <em>similarity</em> score improved by 0.28 (p-value = 3.3 × 10<sup>−3</sup>, t-test) with the refined edit model (M2 vs M3). The improvements in the <em>naturalness</em> and <em>attractiveness</em> scores are also statistically significant. These results clearly demonstrate the efficacy of the proposed method.
 
       </section>
     </div>
 
+
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">Maintained by X　(Last updated: 2018)</p>
+        <p class="copyright">Maintained by Eita Nakamura　(Last updated: Nov 2018)</p>
       </footer>
     </div>
 
