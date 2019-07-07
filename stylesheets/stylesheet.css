@@ -1,11 +1,4 @@
 /*******************************************************************************
-Slate Theme for GitHub Pages
-by Jason Costello, @jsncostello
-*******************************************************************************/
-
-@import url(github-light.css);
-
-/*******************************************************************************
 MeyerWeb Reset
 *******************************************************************************/
 
@@ -60,13 +53,14 @@ body {
 }
 
 #header_wrap {
-  background: #fff;
+  background: #3E14A8;
+  color:#fff;
 }
 
 #main_content_wrap {
   background: #fff;
-  border-top: 1px solid #00BFFF;
-  border-bottom: 1px solid #00BFFF;
+  border-top: 1px solid #3E14A8;
+  border-bottom: 1px solid #3E14A8;
 }
 
 #footer_wrap {
@@ -89,7 +83,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   color:#222222;
   font-family: Helvetica, 'Calibri', Helvetica, Arial, sans-serif;
-  letter-spacing: -1px;
 }
 
 h1 {
@@ -125,7 +118,7 @@ p {
 
 a {
   text-decoration: none;
-  color: #35B235;
+  color: #3E14A8;
   text-shadow: none;
 
   transition: color 0.5s ease;
@@ -141,11 +134,6 @@ a {
 }
 
 a:hover, a:focus {text-decoration: underline;}
-
-footer a {
-  color: #90EE90;
-  text-decoration: underline;
-}
 
 em {
   font-style: italic;
